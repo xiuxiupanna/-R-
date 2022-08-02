@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <!--声明服务提供者名称,保证它的唯一性,它是dubbo内部使用的唯一标识-->
+    <dubbo:application name="001-link-provider"/>
+    <!--指定dubbo协议名称和端口
+        name 指定协议名称,官方推荐dubbo协议
+        port 协议的端口号,默认20880
+    -->
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <!--暴露服务:dubbo:service
+        interface 暴露服务的接口全限定类名
+        ref 引用接口在spring容器中的标识名称
+        registry 使用直连方式,不使用注册中心, 值: N/A
+    -->
+    <dubbo:service interface="com.bjpowernode.dubbo.service.SomeService"
+                   ref="someServiceImpl"
+                   registry="N/A"/>
+    <!--加载接口实现类-->
+    <bean id="someServiceImpl" class="com.bjpowernode.dubbo.service.impl.SomeServiceImpl"/>
+
+
+</beans>

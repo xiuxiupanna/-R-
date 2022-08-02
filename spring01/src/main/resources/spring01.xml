@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring
+http://mybatis.org/schema/mybatis-spring-1.2.xsd http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+
+
+    <!--构造器实例化 对应Bean对象需要提供空构造-->
+    <bean id="typeDao" class="cn.lezijie.dao.TypeDao"></bean>
+
+    <!--静态工厂实例化
+     1.定义工厂以及对应的静态方法
+     2.配置 bean对象对应的工厂以及静态方法
+     -->
+    <bean id="typeService" class="cn.lezijie.factory.StaticFactory" factory-method="createTypeService"></bean>
+
+    <!--实例化工厂实例化
+           1.定义工厂类以及对应的方法
+           2.配置工厂对象
+           3.配置bean对象对应工厂对象以及工厂方法
+
+    -->
+    <!--工厂对象-->
+    <bean id="instanceFactory" class="cn.lezijie.factory.InstanceFactory"></bean>
+    <!--bean对象-->
+    <bean id="typeController"  factory-bean="instanceFactory" factory-method="createController"></bean>
+
+
+
+
+
+
+
+
+
+
+</beans>
+

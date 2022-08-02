@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 1.properties属性引入外部配置文件 -->
+    <properties resource="com/mybatis/example/config.properties">
+        <!-- property里面的属性全局均可使用 -->
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/shangguigu"/>
+        <property name="username" value="root"/>
+        <property name="password" value="ytroot"/>
+    </properties>
+    <!--2. 全局配置参数 -->
+    <settings>
+        <!-- 设置是否启动缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 设置是否启用懒加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+    </settings>
+    <!-- 3.别名设置 -->
+<!--    <typeAliases>
+        <typeAlias type="com.mybatis.domain.User" alias="user"/>
+        <typeAlias type="com.mybatis.domain.Customer" alias="customer"/>
+    </typeAliases>-->
+    <!-- 4.类型转换器 -->
+    <typeHandlers>
+        <!-- 一个简单类型转换器 -->
+        <typeHandler handler="com.mybatis.example.ExampleTypeHandler"/>
+    </typeHandlers>
+    <!-- 5.对象工厂 -->
+    <objectFactory type="com.mybatis.example.ExampleObjectFactory">
+        <!-- 对象工厂注入的参数 -->
+        <property name="someProperty" value="100"/>
+    </objectFactory>
+    <!-- 6.插件 -->
+    <plugins>
+        <plugin interceptor="com.mybatis.example.ExamplePlugin">
+            <property name="someProperty" value="100"/>
+        </plugin>
+    </plugins>
+    <!-- 7.environments数据库环境配置 -->
+    <!-- 和Spring整合后environments配置将配废除 -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用JDBC事务管理 -->
+            <transactionManager type="JDBC" />
+            <!-- 数据库连接池 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 8.加载映射文件 -->
+    <mappers>
+       <!-- <mapper resource="com/mybatis/mapper/UserMapper.xml" />
+        <mapper resource="com/mybatis/mapper/CustomerMapper.xml" />-->
+    </mappers>
+</configuration>

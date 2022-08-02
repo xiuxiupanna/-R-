@@ -1,0 +1,19 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: auth-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+ly:
+  jwt:
+    publicFilePath: G:/黑马/11.乐优商城/day16/ssh/id_ras_pub # 公钥地址
+    privateFilePath: G:/黑马/11.乐优商城/day16/ssh/id_ras_pri # 私钥地址
+    expire: 30 # 过期时间,单位分钟
+    cookieName: LY_TOKEN

@@ -1,0 +1,20 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: cart-service
+  redis:
+    host: 192.168.153.65
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+
+ly:
+  jwt:
+    publicFilePath: G:/黑马/11.乐优商城/day16/ssh/id_ras_pub # 公钥地址
+    cookieName: LY_TOKEN
